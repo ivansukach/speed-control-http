@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package protocol;
+
+message Record{
+    string date = 1;
+    string number = 2;
+    float speed = 3;
+}
+message AddRequest{
+    Record record = 1;
+}
+message EmptyResponse{
+
+}
+message ListingRequest{
+    string date = 1;
+    float speedLimit = 2;
+}
+message ListingResponse{
+    repeated Record record = 1;
+}
+message GetMinMaxResponse{
+    Record min = 1;
+    Record max = 2;
+}
+message GetMinMaxRequest{
+    string date = 1;
+}
+
+service SpeedControlService{
+    rpc Add(AddRequest) returns(EmptyResponse);
+    rpc Listing(ListingRequest) returns(ListingResponse);
+    rpc GetMinMax(GetMinMaxRequest) returns(GetMinMaxResponse);
+}
+

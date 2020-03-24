@@ -25,5 +25,5 @@ func (slc *SpeedLimitControl) Listing(c echo.Context) error {
 	for _, value := range resp.Record {
 		fmt.Println(value)
 	}
-	return c.String(http.StatusOK, "")
+	return c.JSON(http.StatusOK, resp.Record)
 }

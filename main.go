@@ -23,10 +23,8 @@ func main() {
 	client := protocol.NewSpeedControlServiceClient(clientConnInterface)
 	sls := handlers.NewHandler(client)
 	e := echo.New()
-	e.POST("/create", sls.Add)
-	//e.POST("/update", bs.Update)
-	//e.POST("/delete", bs.Delete)
-	//e.POST("/getById", bs.GetById)
-	//e.POST("/listing", bs.Listing)
+	e.POST("/add", sls.Add)
+	e.POST("/getMinMax", sls.GetMinMax)
+	e.POST("/listing", sls.Listing)
 	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", cfg.Port)))
 }

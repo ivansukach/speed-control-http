@@ -22,5 +22,8 @@ func (slc *SpeedLimitControl) GetMinMax(c echo.Context) error {
 	}
 	log.Println(resp.Min)
 	log.Println(resp.Max)
-	return c.NoContent(http.StatusOK)
+	obj := make([]*protocol.Record, 0)
+	obj = append(obj, resp.Min)
+	obj = append(obj, resp.Max)
+	return c.JSON(http.StatusOK, obj)
 }
